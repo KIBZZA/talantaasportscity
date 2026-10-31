@@ -12,19 +12,21 @@ const supabaseClient = window.supabase.createClient(
 
 // Test database connection
 async function testConnection() {
+    console.log("Testing Supabase connection...");
 
     const { data, error } = await supabaseClient
         .from("events")
-        .select("*")
-        .eq("status", "published");
+        .select("id, event_name, status");
 
     if (error) {
-        console.error("Database connection failed:", error);
+        console.error("DATABASE ERROR:", error);
         return;
     }
 
-    console.log("Connected to Talanta Stadium database!");
-    console.log("Available events:", data);
+    console.log("DATABASE CONNECTED!");
+    console.log("Events found:", data);
+
+    return data;
 }
 
 testConnection();
