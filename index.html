@@ -7,6 +7,19 @@
 <title>Bayern Munich vs Ajax</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>talantaasportscity</title>
+
+<!-- Website tab icon -->
+ <link rel="icon" type="image/png" href="c:\Users\Admin\Downloads\Preview 2.jpg">
+
+ <!-- Website sharing preview -->
+  <meta property="og:image" content="https://kibzza.github.io/talantaasportscity/c:\Users\Admin\Downloads\preview.png">
+  <meta property="og:title" content="Talanta Stadium">
+  <meta property="og:description" content="Welcome to Talanta Stadium.">"
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
 :root {
   --red: #e21d2b;
@@ -560,6 +573,40 @@ input:focus, select:focus {
   display: block;
 }
 
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.social-icons a {
+    width: 32px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #e63946;
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+}
+
 .footer {
   background: #08080b;
   color: #fff;
@@ -670,6 +717,7 @@ input:focus, select:focus {
     padding: 10px;
   }
 }
+
 </style>
 </head>
 
@@ -940,6 +988,33 @@ document.getElementById("pay").addEventListener("click", () => {
     money(Number(quantity.value) * price) + ".";
 });
 </script>
+<footer>
+  <div class="social-icons">
 
+    <a href="https://www.facebook.com/TalantaSportsCity" target="_blank" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.instagram.com/talantasportscity/" target="_blank" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@talantasportscity" target="_blank" aria-label="TikTok">
+        <i class="fa-brands fa-tiktok"></i>
+    </a>
+
+    <a href="https://x.com/talantacity" target="_blank" aria-label="X">
+        <i class="fa-brands fa-x-twitter"></i>
+    </a>
+
+    <a href="https://www.youtube.com/@TalantaSportsCity" target="_blank" aria-label="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+  </div>
+
+  <p class="copyright">
+    © 2026 Talanta Stadium. All rights reserved.
+  </p>
+</footer>
 </body>
 </html>
