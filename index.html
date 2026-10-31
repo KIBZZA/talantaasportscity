@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a090b">
+<title>Bayern Munich vs Ajax</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #e21d2b;
+  --deep: #09090c;
+  --cream: #f5f1eb;
+  --gold: #e7c16a;
+  --muted: #bcb8bb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #09090c;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  height: 7px;
+  background: linear-gradient(
+    to bottom,
+    #111 0 24%,
+    #fff 24% 33%,
+    #d71920 33% 66%,
+    #fff 66% 75%,
+    #087f48 75%
+  );
+}
+
+.site-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(18px, 5vw, 76px);
+  position: absolute;
+  z-index: 3;
+  top: 7px;
+  left: 0;
+  right: 0;
+  background: linear-gradient(#08080bbd, transparent);
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .23em;
+  text-transform: uppercase;
+}
+
+.wordmark span {
+  display: block;
+  font-size: 9px;
+  letter-spacing: .34em;
+  color: #ddd;
+  margin-top: 6px;
+}
+
+.head-link {
+  border: 1px solid #ffffff70;
+  border-radius: 3px;
+  padding: 11px 15px;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .14em;
+  font-weight: 800;
+}
+
+.hero {
+  position: relative;
+  min-height: 760px;
+  overflow: hidden;
+  isolation: isolate;
+  background: 
+    radial-gradient(
+      ellipse at 48% 38%,
+      #7d1118 0%,
+      #380d12 35%,
+      transparent 68%
+    ),
+    linear-gradient(
+      110deg,
+      #09090c 0%,
+      #16090c 44%,
+      #40090e 100%
+    );
+}
+
+.hero:before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      #08080af2 0%,
+      #10090be6 27%,
+      #16090bd9 54%,
+      #08080a80 100%
+    ),
+    url("https://cdn.radioafrica.digital/image/2026/05/5c249f96-273e-477c-b95b-4f5780958d75.jpg")no-repeat
+    center/cover;
+  opacity: .8;
+}
+
+.hero:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -12%;
+  right: -12%;
+  height: 260px;
+  bottom: -135px;
+  border-radius: 50%;
+  border-top: 1px solid #ff55552b;
+  box-shadow:
+    0 -30px 0 #d7192010,
+    0 -60px 0 #d7192010,
+    0 -90px 0 #d7192010;
+}
+
+.hero-inner {
+  max-width: 1300px;
+  margin: auto;
+  padding: 120px clamp(18px, 5vw, 76px) 55px;
+  position: relative;
+}
+
+.kicker {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: .31em;
+  color: #f2d9d8;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.venue {
+  text-align: center;
+  text-transform: uppercase;
+  color: gold; 
+  font-size: clamp(15px, 3.4vw, 38px);
+  font-weight: 950;
+  line-height: 1.1;
+  letter-spacing: .035em;
+  text-shadow: 0 2px 20px #000;
+}
+
+
+.location {
+  text-align: center;
+  color: #f3e8e8;
+  font-size: 11px;
+  letter-spacing: .3em;
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+
+.match-title {
+  text-align: center;
+  margin: 45px 0 0;
+  text-transform: uppercase;
+  font-weight: 1000;
+  letter-spacing: -.055em;
+  line-height: .92;
+  font-size: clamp(36px, 7vw, 88px);
+  text-shadow: 0 4px 28px #0009;
+}
+
+.match-title span {
+  color: #fa2635;
+}
+
+.match-date {
+  text-align: center;
+  font-size: clamp(13px, 2vw, 19px);
+  font-weight: 900;
+  letter-spacing: .23em;
+  margin: 20px 0 10px;
+}
+
+.sale-note {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #ffd7d9;
+  font-weight: 800;
+}
+
+.players {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  max-width: 1000px;
+  margin: -5px auto -18px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.player {
+  width: min(39%, 390px);
+  height: 330px;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 0 30px #000b);
+}
+
+.player.home {
+  margin-right: -18px;
+}
+
+.player.away {
+  margin-left: -18px;
+}
+
+.versus {
+  position: absolute;
+  left: 49%;
+  bottom: 80px;
+  transform: translateX(-50%) rotate(-8deg);
+  font-size: clamp(40px, 10vw, 65px);
+  font-weight: 1000;
+  font-style: italic;
+  color: white;
+  text-shadow: 0 4px 0 #9c0e17, 0 10px 24px #000;
+}
+
+.crests {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  margin-top: -7px;
+}
+
+.crest {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 15px #0008);
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.crest.ajax {
+  border-radius: 50%;
+  background: #fff;
+}
+
+.match-strip {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.strip-item {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-weight: 900;
+}
+
+.strip-item b {
+  display: block;
+  font-size: 15px;
+  letter-spacing: .06em;
+  margin-top: 6px;
+}
+
+.strip-sep {
+  height: 30px;
+  width: 1px;
+  background: #ffffff50;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 27px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 3px;
+  padding: 15px 24px;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: 10px;
+  font-weight: 900;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-red {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 8px 30px #d719203b;
+}
+
+.btn-red:hover {
+  background: #fa2b38;
+}
+
+.btn-outline {
+  background: #0c0b0dcc;
+  border: 1px solid #ffffff70;
+  color: #fff;
+}
+
+.kenya-line {
+  height: 5px;
+  background: linear-gradient(
+    to bottom,
+    #111 0 25%,
+    #fff 25% 35%,
+    #d71920 35% 65%,
+    #fff 65% 75%,
+    #087f48 75%
+  );
+}
+
+.tickets {
+  background: #f5f2ed;
+  color: #141216;
+  padding: 65px 20px 75px;
+}
+
+.container {
+  max-width: 970px;
+  margin: auto;
+}
+
+.section-eyebrow {
+  text-align: center;
+  color: #b4121d;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .25em;
+}
+
+.tickets h2 {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 43px);
+  letter-spacing: -.04em;
+  margin: 12px 0;
+}
+
+.sub {
+  text-align: center;
+  color: #6c6870;
+  line-height: 1.6;
+  font-size: 14px;
+  max-width: 640px;
+  margin: 0 auto 34px;
+}
+
+.ticket-panel {
+  max-width: 760px;
+  margin: auto;
+  background: #fff;
+  border: 1px solid #ded9d2;
+  box-shadow: 0 18px 50px #24161a0c;
+}
+
+.ticket-head {
+  background: #111015;
+  color: white;
+  padding: 19px 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.ticket-head span:last-child {
+  color: #ff5a62;
+}
+
+.ticket-body {
+  padding: 24px;
+}
+
+.ticket-choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid #e4dfe0;
+  padding: 18px;
+  margin-bottom: 15px;
+}
+
+.ticket-choice h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.ticket-choice p {
+  margin: 0;
+  color: #77717a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ticket-price {
+  font-weight: 950;
+  font-size: clamp(20px, 3vw, 28px);
+  white-space: nowrap;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.field {
+  margin: 14px 0;
+}
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+input, select {
+  width: 100%;
+  border: 1px solid #d9d3d6;
+  background: #fff;
+  border-radius: 0;
+  padding: 13px;
+  font-size: 14px;
+  color: #17151a;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #d71920;
+  box-shadow: 0 0 0 3px #d7192017;
+}
+
+.payment {
+  border: 1px solid #ded9d2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin: 12px 0 20px;
+}
+
+.mpesa {
+  background: #e2f4e9;
+  color: #087f48;
+  font-weight: 1000;
+  font-size: 11px;
+  padding: 12px 10px;
+}
+
+.payment small {
+  display: block;
+  color: #77717a;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
+.total-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e5dfe0;
+  padding: 18px 0;
+  margin-top: 8px;
+  font-weight: 900;
+}
+
+.total-line strong {
+  font-size: 22px;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 17px;
+  background: #d71920;
+  color: #fff;
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.pay-button:hover {
+  background: #951018;
+}
+
+.disclaimer {
+  color: #77717a;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.notice {
+  display: none;
+  margin-top: 14px;
+  background: #fff2d7;
+  border: 1px solid #e9d49b;
+  color: #644b0b;
+  padding: 13px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.notice.show {
+  display: block;
+}
+
+.footer {
+  background: #08080b;
+  color: #fff;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #b8b3b7;
+  max-width: 800px;
+  margin: 10px auto;
+}
+
+.footer-brand {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 11px;
+}
+
+@media (max-width: 650px) {
+  .site-head {
+    padding: 18px;
+  }
+
+  .hero {
+    min-height: 0;
+  }
+
+  .hero-inner {
+    padding: 100px 15px 38px;
+  }
+
+  .venue {
+    font-size: 20px;
+  }
+
+  .location {
+    font-size: 9px;
+    letter-spacing: .18em;
+  }
+
+  .match-title {
+    margin-top: 35px;
+  }
+
+  .players {
+    margin-top: 18px;
+    margin-bottom: -8px;
+  }
+
+  .player {
+    height: 245px;
+    width: 48%;
+  }
+
+  .versus {
+    bottom: 56px;
+  }
+
+  .crest {
+    width: 58px;
+    height: 58px;
+  }
+
+  .crests {
+    gap: 14px;
+  }
+
+  .match-strip {
+    gap: 13px;
+  }
+
+  .strip-item {
+    font-size: 9px;
+  }
+
+  .strip-item b {
+    font-size: 12px;
+  }
+
+  .strip-sep {
+    height: 25px;
+  }
+
+  .tickets {
+    padding: 48px 14px;
+  }
+
+  .ticket-body {
+    padding: 17px;
+  }
+
+  .ticket-choice {
+    padding: 13px;
+    gap: 10px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .head-link {
+    font-size: 9px;
+    padding: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="topbar"></div>
+
+<header class="site-head">
+  <a class="wordmark" href="#top" style="text-decoration:none">
+    TALANTA
+    <span>SPORTS CITY · NAIROBI</span>
+  </a>
+
+  <a class="head-link" href="#tickets">GET TICKETS ↗</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div class="kicker">
+        A historic day for Kenyan football
+      </div>
+
+      <div class="venue">
+        RAILA ODINGA INTERNATIONAL STADIUM<br>
+        <div class="separator">AT</div>
+        TALANTA SPORTS CITY
+      </div>
+
+      <div class="location">NAIROBI · KENYA</div>
+
+      <h1 class="match-title">
+        Bayern Munich<br>
+        <span>vs</span> Ajax
+      </h1>
+
+      <div class="match-date">5TH JANUARY 2027</div>
+
+      <div class="sale-note">
+        The opening match · A new chapter for Kenyan sport
+      </div>
+
+      <div class="players" aria-label="Bayern Munich and Ajax player imagery">
+        <img
+          class="player home"
+          src="https://talantasportscity.com/brand/match/players-home-900.webp"
+          alt="Bayern Munich players"
+        >
+
+        <img
+          class="player away"
+          src="https://talantasportscity.com/brand/match/players-away-900.webp"
+          alt="Ajax players"
+        >
+
+        <div class="versus">VS</div>
+      </div>
+
+      <div class="crests">
+        <img
+          class="crest"
+          src="https://talantasportscity.com/brand/match/crest-home-360.webp"
+          alt="FC Bayern Munich crest"
+        >
+
+        <img
+          class="crest ajax"
+          src="https://talantasportscity.com/brand/match/crest-away-360.webp"
+          alt="AFC Ajax crest"
+        >
+      </div>
+
+      <div class="match-strip">
+        <div class="strip-item">
+          Match day
+          <b>Tuesday · 5 January</b>
+        </div>
+
+        <div class="strip-sep"></div>
+
+        <div class="strip-item">
+          Location
+          <b>Nairobi, Kenya</b>
+        </div>
+
+        <div class="strip-sep"></div>
+
+        <div class="strip-item">
+          Ticket price
+          <b>KSh 5,000</b>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-red" href="#tickets">
+          Book your ticket <span>→</span>
+        </a>
+
+        <a class="btn btn-outline" href="#tickets">
+          Event details
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="kenya-line"></div>
+
+  <section class="tickets" id="tickets">
+    <div class="container">
+
+      <div class="section-eyebrow">Be part of the moment</div>
+
+      <h2>Secure your match ticket</h2>
+
+      <p class="sub">
+        Choose your ticket quantity and enter your contact details.
+    
+      </p>
+
+      <div class="ticket-panel">
+
+        <div class="ticket-head">
+          <span>Bayern Munich vs Ajax</span>
+          <span>5 January 2027</span>
+        </div>
+
+        <div class="ticket-body">
+
+          <div class="ticket-choice">
+            <div>
+              <h3>Match Day Admission</h3>
+              <p>Raila Odinga International Stadium</p>
+            </div>
+
+            <div class="ticket-price">KSh 5,000</div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input
+                id="name"
+                autocomplete="name"
+                placeholder="Your full name"
+              >
+            </div>
+
+            <div class="field">
+              <label for="phone">M-Pesa phone number</label>
+              <input
+                id="phone"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="07XX XXX XXX"
+              >
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="email">Email address (optional)</label>
+              <input
+                id="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+              >
+            </div>
+
+            <div class="field">
+              <label for="quantity">Number of tickets</label>
+              <select id="quantity">
+                <option value="1">1 ticket</option>
+                <option value="2">2 tickets</option>
+                <option value="3">3 tickets</option>
+                <option value="4">4 tickets</option>
+                <option value="5">5 tickets</option>
+                <option value="6">6 tickets</option>
+              </select>
+            </div>
+          </div>
+
+          <label>Payment method</label>
+
+          <div class="payment">
+            <div class="mpesa">M-PESA</div>
+
+            <div style="flex:1">
+              <strong>M-Pesa mobile money</strong>
+              <small>
+                Selected Payment Method. You will be prompted to complete the payment on your M-Pesa app. Transaction fees may apply.
+              </small>
+            </div>
+
+            <input
+              type="radio"
+              checked
+              aria-label="M-Pesa selected"
+              style="width:18px;accent-color:#087f48"
+            >
+          </div>
+
+          <div class="total-line">
+            <span>Total</span>
+            <strong id="total">KSh 5,000</strong>
+          </div>
+
+          <button class="pay-button" id="pay">
+            Continue with M-Pesa →
+          </button>
+
+          <div
+            class="notice"
+            id="notice"
+            role="status"
+            aria-live="polite"
+          ></div>
+          
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const quantity = document.getElementById("quantity");
+const total = document.getElementById("total");
+const notice = document.getElementById("notice");
+const price = 5000;
+
+function money(value) {
+  return "KSh " + value.toLocaleString("en-KE");
+}
+
+// Update the total when ticket quantity changes.
+quantity.addEventListener("change", () => {
+  total.textContent = money(Number(quantity.value) * price);
+});
+
+// Preview the booking details. This does not process payment.
+document.getElementById("pay").addEventListener("click", () => {
+  const name = document.getElementById("name").value.trim();
+
+  const phone = document.getElementById("phone")
+    .value.trim()
+    .replace(/[\s-]/g, "");
+
+  notice.classList.add("show");
+
+  if (!name || !phone) {
+    notice.textContent =
+      "Enter your name and M-Pesa phone number to preview the booking.";
+    return;
+  }
+
+  if (!/^(?:\+254|254|0)(?:7|1)\d{8}$/.test(phone)) {
+    notice.textContent =
+      "Please check the Kenyan phone number format, for example 0712345678.";
+    return;
+  }
+
+  notice.textContent =
+    "Booking preview for " + name +
+    ": " + quantity.value + " ticket(s), total " +
+    money(Number(quantity.value) * price) + ".";
+});
+</script>
+
+</body>
+</html>
