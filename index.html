@@ -1006,7 +1006,7 @@ document.getElementById("pay").addEventListener("click", async () => {
          name,
          phone,
          email,
-         quantity: document.getElementById("quantity").value
+         quantity: Number(document.getElementById("quantity").value)
         });
       }
     );
