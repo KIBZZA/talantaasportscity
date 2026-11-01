@@ -1013,12 +1013,61 @@ document.getElementById("pay").addEventListener("click", async () => {
 
     const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(data.error || data.message || "Payment request failed.");
-    }
+if (!response.ok) {
+  throw new Error(data.error || data.message || "Payment request failed.");
+}
 
-    notice.textContent =
-      "Payment request sent! Check your M-Pesa phone. Your ticket will appear once payment is confirmed.";
+if (!data.bookingId || !data.ticketAccessToken) {
+  throw new Error("Booking details were not returned.");
+}
+
+notice.textContent = "Payment initiated. Waiting for M-Pesa confirmation...";
+
+let ticketData = null;
+
+for (let i = 0; i < 60; i++) {
+  await new Promise(resolve => setTimeout(resolve, 3000));
+
+  const ticketResponse = await fetch(
+    "https://kiipcjwnyrqbjqfucmfw.supabase.co/functions/v1/ticket-status",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": "sb_publishable_0Hr35b9Cx1z6vmGG_dg0dA_1P3tnuL-",
+        "Authorization": "Bearer sb_publishable_0Hr35b9Cx1z6vmGG_dg0dA_1P3tnuL-"
+      },
+      body: JSON.stringify({
+        bookingId: data.bookingId,
+        ticketAccessToken: data.ticketAccessToken
+      })
+    }
+  );
+
+  ticketData = await ticketResponse.json();
+
+  if (!ticketResponse.ok) {
+    throw new Error(ticketData.error || "Could not retrieve ticket.");
+  }
+
+  if (ticketData.status === "pending") {
+    notice.textContent = "Payment is still processing...";
+    continue;
+  }
+
+  if (ticketData.success && ticketData.tickets?.length) {
+    break;
+  }
+}
+
+if (ticketData?.success && ticketData.tickets?.length) {
+  notice.textContent =
+    "Payment confirmed! Booking: " + ticketData.bookingReference +
+    " | Ticket: " + ticketData.tickets[0].ticket_code;
+} else {
+  notice.textContent =
+    "Payment is still processing. Please don't pay again.";
+}
 
   } catch (error) {
     notice.textContent = "Payment error: " + error.message;
