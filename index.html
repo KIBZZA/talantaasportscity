@@ -1003,10 +1003,10 @@ document.getElementById("pay").addEventListener("click", async () => {
           "Authorization": "Bearer sb_publishable_0Hr35b9Cx1z6vmGG_dg0dA_1P3tnuL-"
         },
         body: JSON.stringify({
-          name,
-          phone,
-          email,
-          quantity: Number(quantity)
+         name,
+         phone,
+         email,
+         quantity: Number(document.getElementById("quantity").value)
         })
       }
     );
