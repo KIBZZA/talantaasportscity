@@ -1018,7 +1018,7 @@ document.getElementById("pay").addEventListener("click", async () => {
     }
 
     notice.textContent =
-      "Payment request sent! Check your M-Pesa phone.";
+      "Payment request sent! Check your M-Pesa phone. Your ticket will appear once payment is confirmed.";
 
   } catch (error) {
     notice.textContent = "Payment error: " + error.message;
